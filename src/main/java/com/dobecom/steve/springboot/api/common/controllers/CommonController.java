@@ -4,6 +4,8 @@ import com.dobecom.steve.springboot.api.common.interfaces.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +24,7 @@ public class CommonController {
     @Autowired // Dependency injection (Constructor injection) [Recommended]
     public CommonController(
             // If interface that have multiple classes is injected, @Qualifier is required
-            @Qualifier("tenisCoach")
+            @Qualifier("cricketCoach")
             Coach theCoach) {
         System.out.println("In CommonController constructor : " + getClass().getSimpleName());
         myCoach = theCoach;
@@ -32,4 +34,10 @@ public class CommonController {
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
+
+//    @PostMapping("/common")
+//    public void createUser(
+//    ) {
+//
+//    }
 }
