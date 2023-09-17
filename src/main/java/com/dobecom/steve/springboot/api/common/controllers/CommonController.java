@@ -22,11 +22,11 @@ public class CommonController {
     @Autowired // Dependency injection (Constructor injection) [Recommended]
     public CommonController(
             // If interface that have multiple classes is injected, @Qualifier is required
-            @Qualifier("cricketCoach")
+            @Qualifier("tenisCoach")
             Coach theCoach) {
+        System.out.println("In CommonController constructor : " + getClass().getSimpleName());
         myCoach = theCoach;
     }
-
 
     @GetMapping("/dailyworkout")
     public String getDailyWorkout() {
