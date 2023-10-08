@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 // If you want to scan the components that is placed different root package, It's required to put the option like below on this annotation
 //        (scanBasePackages = {"com.dobecom.steve.springboot.diff.location"})
@@ -28,10 +30,17 @@ public class SpringbootApplication {
         };
     }
 
+
     private void createUser(UserDAO userDAO) {
         User user = new User("steve");
         userDAO.save(user);
         String name = user.getFirstName();
         System.out.println("User created with name: " + name);
+
+        String getUser = userDAO.findById(2).getFirstName();
+        System.out.println("User retrieved with name: " + getUser);
+
+        List<User> users = userDAO.findAllSteve();
+        System.out.println("Users retrieved: " + users.size());
     }
 }
