@@ -3,14 +3,13 @@ package com.dobecom.steve.springboot.api.common.controllers;
 import com.dobecom.steve.springboot.api.common.interfaces.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+//@RequestMapping("/common")
 public class CommonController {
-
     // @Autowired // Dependency injection (Field injection) [Not recommended]
     // reason : hard to take the unit test
     private Coach myCoach;
