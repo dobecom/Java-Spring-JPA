@@ -10,4 +10,7 @@ public interface UserDAO {
     User findById(int id);
 
     List<User> findAllSteve();
+
+    void update(User user);
+
 }

@@ -38,4 +38,10 @@ public class UserDAOImpl implements UserDAO{
         List<User> users = query.getResultList();
         return users;
     }
+
+    @Override
+    @Transactional
+    public void update(User user) {
+        entityManager.merge(user);
+    }
 }

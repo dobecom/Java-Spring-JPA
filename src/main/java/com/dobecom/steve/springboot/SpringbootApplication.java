@@ -24,10 +24,18 @@ public class SpringbootApplication {
             System.out.println("Hello World from Spring Boot!");
             try{
                 createUser(userDAO);
+                updateUser(userDAO);
             }catch(Exception e){
                 System.out.println("Exception: " + e.getMessage());
             }
         };
+    }
+
+    private void updateUser(UserDAO userDAO) {
+        User user = userDAO.findById(2);
+        user.setFirstName("steve2");
+        userDAO.update(user);
+        System.out.println("User updated with name: " + user.getFirstName());
     }
 
 
