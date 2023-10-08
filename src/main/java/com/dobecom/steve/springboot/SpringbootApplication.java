@@ -23,12 +23,24 @@ public class SpringbootApplication {
         return args -> {
             System.out.println("Hello World from Spring Boot!");
             try{
-                createUser(userDAO);
-                updateUser(userDAO);
+//                createUser(userDAO);
+//                updateUser(userDAO);
+//                deleteUser(userDAO);
+                deleteAllUsers(userDAO);
             }catch(Exception e){
                 System.out.println("Exception: " + e.getMessage());
             }
         };
+    }
+
+    private void deleteAllUsers(UserDAO userDAO) {
+        int numRowsDeleted = userDAO.deleteAll("steve");
+        System.out.println("Users deleted: " + numRowsDeleted);
+    }
+
+    private void deleteUser(UserDAO userDAO) {
+        userDAO.delete(3);
+        System.out.println("User deleted");
     }
 
     private void updateUser(UserDAO userDAO) {

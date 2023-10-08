@@ -44,4 +44,20 @@ public class UserDAOImpl implements UserDAO{
     public void update(User user) {
         entityManager.merge(user);
     }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll(String firstName) {
+        int numRowsDeleted = entityManager.createQuery("DELETE FROM User u WHERE firstName=:firstName")
+                .setParameter("firstName", firstName)
+                .executeUpdate();
+        return numRowsDeleted;
+    }
 }
