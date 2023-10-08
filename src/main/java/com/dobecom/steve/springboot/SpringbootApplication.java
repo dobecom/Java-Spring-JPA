@@ -23,10 +23,10 @@ public class SpringbootApplication {
         return args -> {
             System.out.println("Hello World from Spring Boot!");
             try{
-//                createUser(userDAO);
+                createUser(userDAO);
 //                updateUser(userDAO);
 //                deleteUser(userDAO);
-                deleteAllUsers(userDAO);
+//                deleteAllUsers(userDAO);
             }catch(Exception e){
                 System.out.println("Exception: " + e.getMessage());
             }
@@ -57,8 +57,8 @@ public class SpringbootApplication {
         String name = user.getFirstName();
         System.out.println("User created with name: " + name);
 
-        String getUser = userDAO.findById(2).getFirstName();
-        System.out.println("User retrieved with name: " + getUser);
+//        String getUser = userDAO.findById(2).getFirstName();
+//        System.out.println("User retrieved with name: " + getUser);
 
         List<User> users = userDAO.findAllSteve();
         System.out.println("Users retrieved: " + users.size());
