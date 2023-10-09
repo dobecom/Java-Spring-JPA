@@ -1,16 +1,11 @@
 package com.dobecom.steve.springboot.api;
 
-import com.dobecom.steve.springboot.api.common.CommonErrorResponse;
 import com.dobecom.steve.springboot.api.common.CommonNotFoundException;
 import com.dobecom.steve.springboot.api.common.entities.User;
 import com.dobecom.steve.springboot.api.common.services.UserService;
+import com.dobecom.steve.springboot.api.common.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +39,25 @@ public class RestApiController {
             throw new CommonNotFoundException("User id not found - " + userId);
         }
 
-        return userService.findUser(userId);
+        User user = userService.findUser(userId);
+        if(user == null) {
+            throw new CommonNotFoundException("User id not found - " + userId);
+        }
+
+        return user;
+    }
+
+    @PostMapping("/users")
+    public User saveUser(@RequestBody User user) {
+        System.out.println("In saveUser : " + getClass().getSimpleName());
+        System.out.println(user);
+
+        User savedUser = userService.save(user);
+        return savedUser;
+    }
+
+    @PostMapping("/test")
+    public void test() {
+        System.out.println("test");
     }
 }

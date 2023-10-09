@@ -60,4 +60,10 @@ public class UserDAOImpl implements UserDAO{
                 .executeUpdate();
         return numRowsDeleted;
     }
+
+    @Override
+    public User saveByApi(User user) {
+        User dbUser = entityManager.merge(user);
+        return dbUser;
+    }
 }

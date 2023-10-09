@@ -17,4 +17,6 @@ public interface UserDAO {
 
     int deleteAll(String firstName);
 
+    User saveByApi(User user);
+
 }

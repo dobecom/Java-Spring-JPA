@@ -2,23 +2,13 @@ package com.dobecom.steve.springboot.api.common.services;
 
 import com.dobecom.steve.springboot.api.common.dao.UserDAOImpl;
 import com.dobecom.steve.springboot.api.common.entities.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
-    private final UserDAOImpl userDAOImpl;
+public interface UserService {
+    List<User> getAllUsers();
 
-    public UserService(UserDAOImpl userDAOImpl) {
-        this.userDAOImpl = userDAOImpl;
-    }
+    User findUser(int id);
 
-    public List<User> getAllUsers() {
-        return userDAOImpl.findAllSteve();
-    }
-
-    public User findUser(int id) {
-        return userDAOImpl.findById(id);
-    }
+    User save(User user);
 }
