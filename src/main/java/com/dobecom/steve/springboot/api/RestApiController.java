@@ -3,7 +3,6 @@ package com.dobecom.steve.springboot.api;
 import com.dobecom.steve.springboot.api.common.CommonNotFoundException;
 import com.dobecom.steve.springboot.api.common.entities.User;
 import com.dobecom.steve.springboot.api.common.services.UserService;
-import com.dobecom.steve.springboot.api.common.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +38,8 @@ public class RestApiController {
             throw new CommonNotFoundException("User id not found - " + userId);
         }
 
-        User user = userService.findUser(userId);
-        if(user == null) {
+        User user = userService.findUserById(userId);
+        if (user == null) {
             throw new CommonNotFoundException("User id not found - " + userId);
         }
 
@@ -49,15 +48,23 @@ public class RestApiController {
 
     @PostMapping("/users")
     public User saveUser(@RequestBody User user) {
-        System.out.println("In saveUser : " + getClass().getSimpleName());
-        System.out.println(user);
-
         User savedUser = userService.save(user);
         return savedUser;
     }
 
-    @PostMapping("/test")
-    public void test() {
-        System.out.println("test");
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User user) {
+        User updatedUser = userService.save(user);
+        return updatedUser;
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public String deleteUser(@PathVariable int userId){
+        User user = userService.findUserById(userId);
+        if(user == null){
+            throw new RuntimeException("User is not found - " + userId);
+        }
+        userService.deleteById(userId);
+        return "Delete user id - " + userId;
     }
 }

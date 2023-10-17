@@ -18,20 +18,20 @@ public class SpringbootApplication {
     }
 
     // Test code for Command Line App
-    @Bean
-    public CommandLineRunner commandLineRunner(UserDAO userDAO){
-        return args -> {
-            System.out.println("Hello World from Spring Boot!");
-            try{
-                createUser(userDAO);
+//    @Bean
+//    public CommandLineRunner commandLineRunner(UserDAO userDAO){
+//        return args -> {
+//            System.out.println("Hello World from Spring Boot!");
+//            try{
+//                createUser(userDAO);
 //                updateUser(userDAO);
 //                deleteUser(userDAO);
 //                deleteAllUsers(userDAO);
-            }catch(Exception e){
-                System.out.println("Exception: " + e.getMessage());
-            }
-        };
-    }
+//            }catch(Exception e){
+//                System.out.println("Exception: " + e.getMessage());
+//            }
+//        };
+//    }
 
     private void deleteAllUsers(UserDAO userDAO) {
         int numRowsDeleted = userDAO.deleteAll("steve");
@@ -39,7 +39,7 @@ public class SpringbootApplication {
     }
 
     private void deleteUser(UserDAO userDAO) {
-        userDAO.delete(3);
+        userDAO.deleteById(3);
         System.out.println("User deleted");
     }
 

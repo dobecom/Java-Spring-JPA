@@ -13,7 +13,7 @@ public interface UserDAO {
 
     void update(User user);
 
-    void delete(int id);
+    void deleteById(int id);
 
     int deleteAll(String firstName);
 

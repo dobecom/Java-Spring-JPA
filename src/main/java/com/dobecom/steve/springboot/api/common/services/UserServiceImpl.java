@@ -1,7 +1,6 @@
 package com.dobecom.steve.springboot.api.common.services;
 
 import com.dobecom.steve.springboot.api.common.dao.UserDAO;
-import com.dobecom.steve.springboot.api.common.dao.UserDAOImpl;
 import com.dobecom.steve.springboot.api.common.entities.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUser(int id) {
+    public User findUserById(int id) {
         return userDAO.findById(id);
     }
 
@@ -33,6 +32,12 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         User savedUser = userDAO.saveByApi(user);
         return savedUser;
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(int id) {
+        userDAO.deleteById(id);
     }
 }
 
