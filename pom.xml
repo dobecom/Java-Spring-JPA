@@ -62,11 +62,25 @@
             <artifactId>spring-webmvc</artifactId>
             <version>6.0.14</version>
         </dependency>
+
+        <!-- QueryDsl-->
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>쇼
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
