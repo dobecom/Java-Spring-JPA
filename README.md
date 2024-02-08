@@ -1,3 +1,6 @@
+### Branches
+- basic-springboot3 : Basic Concepts of Spring Boot Project referenced by Udemy Course (https://www.udemy.com/course/spring-hibernate-tutorial/)
+- main : Practice for Spring Security, JPA, DDD
 
 ### Version
 - JDK 17.0.9
