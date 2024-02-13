@@ -3,9 +3,11 @@ package com.example.javaspringjpa.service;
 import com.example.javaspringjpa.entity.Product;
 import com.example.javaspringjpa.repository.ProductRepository;
 import com.example.javaspringjpa.vo.ProductVO;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ProductService {
 
     private final ProductRepository productRepository;

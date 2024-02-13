@@ -1,6 +1,5 @@
 package com.example.javaspringjpa.controller;
 
-import com.example.javaspringjpa.entity.Product;
 import com.example.javaspringjpa.model.request.GetProductRequest;
 import com.example.javaspringjpa.model.response.GetProductResponse;
 import com.example.javaspringjpa.service.ProductService;
