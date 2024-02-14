@@ -7,3 +7,16 @@ spring:
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,beans,mapping"
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: "Java Spring JPA Application"
+    description: "Java Spring JPA Application Best Practice"
+    version: "1.0.0"
