@@ -3,11 +3,13 @@ spring:
     url: jdbc:mysql://localhost:3306/db
     username: user
     password: password
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
-management:
+      ddl-auto: update
+  main:
+    banner-mode: "off"
   endpoints:
     web:
       exposure:
@@ -15,8 +17,19 @@ management:
   info:
     env:
       enabled: true
+#server:
+#  servlet:
+#    context-path: /api
+springdoc:
+  swagger-ui:
+    path: /docs/swagger-ui.html
+    disable-swagger-default-url: true
+    display-request-duration: true
 info:
   app:
     name: "Java Spring JPA Application"
     description: "Java Spring JPA Application Best Practice"
     version: "1.0.0"
+#logging:
+#  level:
+#    root: WARN
