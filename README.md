@@ -3,6 +3,6 @@
 - main : Practice for Spring Security, JPA
 
 ### Version
-- JDK 17.0.9
+- Java 17.0.7
 - Spring Boot 3.2
 - MySQL 8.0.36
