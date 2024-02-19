@@ -1,52 +1,26 @@
 package com.example.javaspringjpa.entity.base;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import java.time.Instant;
 import java.util.Date;
-import java.util.Objects;
 
+@Getter
 @MappedSuperclass
 public abstract class BaseEntity {
-
     @Id
     @Column
-    @GeneratedValue(generator = "id_generator", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date createdDate = Date.from(Instant.now());
+    @CreatedDate
+    protected Date createdAt = Date.from(Instant.now());
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BaseEntity that = (BaseEntity) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+    @Column(nullable = false)
+    @LastModifiedDate
+    protected Date updatedAt = Date.from(Instant.now());
 }

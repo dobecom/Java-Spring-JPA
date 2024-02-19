@@ -1,5 +1,4 @@
-package com.example.javaspringjpa.model.response.base;
-
+package com.example.javaspringjpa.model.response.product.base;
 
 import com.example.javaspringjpa.model.response.Status;
 

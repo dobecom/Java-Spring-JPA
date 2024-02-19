@@ -1,10 +1,17 @@
 package com.example.javaspringjpa.service;
 
 import com.example.javaspringjpa.entity.Product;
+import com.example.javaspringjpa.model.request.product.CreateProductRequest;
+import com.example.javaspringjpa.model.response.product.CreateProductResponse;
+import com.example.javaspringjpa.model.response.product.GetProductResponse;
 import com.example.javaspringjpa.repository.ProductRepository;
-import com.example.javaspringjpa.vo.ProductVO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,19 +23,26 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Optional<ProductVO> get(Long productId) {
-        Optional<Product> product = productRepository.findById(productId);
-        if (product.isPresent()) {
-            ProductVO vo = new ProductVO();
-            vo.setTitle(product.get().getTitle());
-            vo.setDescription(product.get().getDescription());
-            vo.setPrice(product.get().getPrice());
-            vo.setOwnerId(product.get().getOwnerId());
-            vo.setStatus(product.get().getStatus());
-            return Optional.of(vo);
-        } else {
-            return Optional.empty();
-        }
+    public CreateProductResponse create(CreateProductRequest request) {
+        final Product product = productRepository.save(request.toEntity());
 
+        return CreateProductResponse.builder()
+                .productId(product.getId())
+                .build();
+    }
+
+    public List<GetProductResponse> list(int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.ASC, "title"));
+        Page<Product> result = productRepository.findAll(pageable);
+
+        return result.getContent().stream().map(
+                product -> GetProductResponse.builder()
+                        .productId(product.getId())
+                        .title(product.getTitle())
+                        .description(product.getDescription())
+                        .price(product.getPrice())
+                        .ownerId(product.getOwnerId())
+                        .build()
+        ).toList();
     }
 }

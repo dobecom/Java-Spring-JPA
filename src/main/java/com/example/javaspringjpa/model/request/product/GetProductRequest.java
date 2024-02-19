@@ -1,7 +1,7 @@
-package com.example.javaspringjpa.model.request;
+package com.example.javaspringjpa.model.request.product;
 
 
-import com.example.javaspringjpa.model.request.base.ProductRequest;
+import com.example.javaspringjpa.model.request.product.base.ProductRequest;
 
 import javax.validation.constraints.NotBlank;
 
