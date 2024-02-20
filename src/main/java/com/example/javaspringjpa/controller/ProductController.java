@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "product", description = "product api")
@@ -31,17 +32,16 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Success to create the product",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = CreateProductRequest.class))
+                            schema = @Schema(implementation = CreateProductResponse.class))
             )
     })
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CreateProductRequest request) {
+    public ResponseEntity<?> create(@RequestBody @Valid CreateProductRequest request) {
         CreateProductResponse response = productService.create(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
-
 
     @Operation(summary = "Get product list")
     @ApiResponses(value = {

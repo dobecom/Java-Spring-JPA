@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(info = @Info(title = "Java Spring JPA", version = "1.0", description = "Java Spring JPA"))
 @Configuration
-public class OpenAPIConfiguration {
+public class OpenAPIConfig {
     public OpenAPI openAPI() {
         return new OpenAPI();
     }
