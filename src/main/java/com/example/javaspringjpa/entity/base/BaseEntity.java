@@ -1,26 +1,33 @@
 package com.example.javaspringjpa.entity.base;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
 import java.util.Date;
 
-@Getter
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     @CreatedDate
-    protected Date createdAt = Date.from(Instant.now());
+    @Column(nullable = false, updatable = false)
+    protected Date createdAt;
 
-    @Column(nullable = false)
     @LastModifiedDate
-    protected Date updatedAt = Date.from(Instant.now());
+    @Column(nullable = false)
+    protected Date updatedAt;
+
+//    @CreatedBy
+//    @Column(nullable = false, updatable = false)
+//    protected String createdBy;
+
+    public Long getId() {
+        return id;
+    }
 }
