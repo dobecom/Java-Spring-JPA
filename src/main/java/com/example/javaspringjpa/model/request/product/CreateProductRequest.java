@@ -6,12 +6,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
+import lombok.*;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
 @Schema(description = "Create Product Request")
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateProductRequest implements ProductRequest {
     @Size(max = 50, message = "error.validation.title.not.valid")
     @NotBlank(message = "error.validation.title.not.blank")
