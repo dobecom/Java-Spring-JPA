@@ -45,4 +45,19 @@ public class ProductService {
                         .build()
         ).toList();
     }
+
+    public GetProductResponse findProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent()){
+            return GetProductResponse.builder()
+                    .productId(product.get().getId())
+                    .title(product.get().getTitle())
+                    .description(product.get().getDescription())
+                    .price(product.get().getPrice())
+                    .ownerId(product.get().getOwnerId())
+                    .build();
+        } else {
+            throw new IllegalArgumentException("Product not found" + id);
+        }
+    }
 }
