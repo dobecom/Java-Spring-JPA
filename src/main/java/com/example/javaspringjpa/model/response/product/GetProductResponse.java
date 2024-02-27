@@ -15,7 +15,6 @@ public class GetProductResponse extends ProductResponse {
     private BigDecimal price;
     private Long ownerId;
 
-
     @Builder
     public GetProductResponse(Long productId, String title, String description, BigDecimal price, Long ownerId) {
         this.productId = productId;

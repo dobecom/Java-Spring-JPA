@@ -1,7 +1,8 @@
 package com.example.javaspringjpa.controller;
 
 import com.example.javaspringjpa.model.request.product.CreateProductRequest;
-import com.example.javaspringjpa.service.ProductService;
+import com.example.javaspringjpa.module.product.controller.ProductController;
+import com.example.javaspringjpa.module.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterAll;

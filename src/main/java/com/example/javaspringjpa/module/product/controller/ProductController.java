@@ -1,11 +1,11 @@
-package com.example.javaspringjpa.controller;
+package com.example.javaspringjpa.module.product.controller;
 
 import com.example.javaspringjpa.model.request.common.ListIdRequest;
 import com.example.javaspringjpa.model.request.product.CreateProductRequest;
 import com.example.javaspringjpa.model.request.product.UpdateProductRequest;
 import com.example.javaspringjpa.model.response.product.CreateProductResponse;
 import com.example.javaspringjpa.model.response.product.GetProductResponse;
-import com.example.javaspringjpa.service.ProductService;
+import com.example.javaspringjpa.module.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

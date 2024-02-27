@@ -1,4 +1,4 @@
-package com.example.javaspringjpa.repository;
+package com.example.javaspringjpa.module.product.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

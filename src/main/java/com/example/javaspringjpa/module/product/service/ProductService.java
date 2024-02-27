@@ -1,12 +1,12 @@
-package com.example.javaspringjpa.service;
+package com.example.javaspringjpa.module.product.service;
 
 import com.example.javaspringjpa.entity.Product;
 import com.example.javaspringjpa.model.request.product.CreateProductRequest;
 import com.example.javaspringjpa.model.request.product.UpdateProductRequest;
 import com.example.javaspringjpa.model.response.product.CreateProductResponse;
 import com.example.javaspringjpa.model.response.product.GetProductResponse;
-import com.example.javaspringjpa.repository.ProductQuerydslRepository;
-import com.example.javaspringjpa.repository.ProductRepository;
+import com.example.javaspringjpa.module.product.repository.ProductQuerydslRepository;
+import com.example.javaspringjpa.module.product.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
