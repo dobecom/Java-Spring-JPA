@@ -1,6 +1,8 @@
 package com.example.javaspringjpa.controller;
 
+import com.example.javaspringjpa.model.request.common.ListIdRequest;
 import com.example.javaspringjpa.model.request.product.CreateProductRequest;
+import com.example.javaspringjpa.model.request.product.UpdateProductRequest;
 import com.example.javaspringjpa.model.response.product.CreateProductResponse;
 import com.example.javaspringjpa.model.response.product.GetProductResponse;
 import com.example.javaspringjpa.service.ProductService;
@@ -99,5 +101,41 @@ public class ProductController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(product);
+    }
+
+    @Operation(summary = "Delete products")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success to delete products"),
+            @ApiResponse(responseCode = "404", description = "Product not found",
+                    content = @Content(mediaType = "application/json",
+                            examples = @ExampleObject(
+                                    value = "{\"message\": \"Not found\"}"
+                            ))
+            ),
+    })
+    @DeleteMapping()
+    public ResponseEntity<?> deleteProducts(@RequestBody ListIdRequest request) {
+        productService.deleteProducts(request.getListIds());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
+    }
+
+    @Operation(summary = "Update the product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success to update the product"),
+            @ApiResponse(responseCode = "404", description = "Product not found",
+                    content = @Content(mediaType = "application/json",
+                            examples = @ExampleObject(
+                                    value = "{\"message\": \"Not found\"}"
+                            ))
+            ),
+    })
+    @PatchMapping("{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid UpdateProductRequest request) {
+        productService.updateProduct(id, request);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
     }
 }

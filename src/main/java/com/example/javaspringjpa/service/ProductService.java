@@ -2,9 +2,12 @@ package com.example.javaspringjpa.service;
 
 import com.example.javaspringjpa.entity.Product;
 import com.example.javaspringjpa.model.request.product.CreateProductRequest;
+import com.example.javaspringjpa.model.request.product.UpdateProductRequest;
 import com.example.javaspringjpa.model.response.product.CreateProductResponse;
 import com.example.javaspringjpa.model.response.product.GetProductResponse;
+import com.example.javaspringjpa.repository.ProductQuerydslRepository;
 import com.example.javaspringjpa.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,15 +15,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductQuerydslRepository productQuerydslRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductQuerydslRepository productQuerydslRepository) {
         this.productRepository = productRepository;
+        this.productQuerydslRepository = productQuerydslRepository;
     }
 
     public CreateProductResponse create(CreateProductRequest request) {
@@ -48,7 +54,7 @@ public class ProductService {
 
     public GetProductResponse findProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
+        if (product.isPresent()) {
             return GetProductResponse.builder()
                     .productId(product.get().getId())
                     .title(product.get().getTitle())
@@ -56,6 +62,28 @@ public class ProductService {
                     .price(product.get().getPrice())
                     .ownerId(product.get().getOwnerId())
                     .build();
+        } else {
+            throw new IllegalArgumentException("Product not found" + id);
+        }
+    }
+
+    @Transactional
+    public void deleteProducts(List<Long> listIds) {
+        try {
+            Long count = productQuerydslRepository.deleteByIds(listIds);
+            if (count != listIds.size()) {
+                throw new NoSuchElementException("Product not found");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Transactional
+    public void updateProduct(Long id, UpdateProductRequest request) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            product.get().update(request.getTitle(), request.getDescription(), request.getPrice());
         } else {
             throw new IllegalArgumentException("Product not found" + id);
         }

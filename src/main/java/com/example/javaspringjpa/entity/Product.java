@@ -41,4 +41,10 @@ public class Product extends BaseEntity {
     public Long getId() {
         return super.getId();
     }
+
+    public void update(String title, String description, BigDecimal price) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+    }
 }

@@ -19,9 +19,9 @@ spring:
     web:
       exposure:
         include: "health,info,beans,mapping"
-#  sql:
-#    init:
-#      mode: always
+  sql:
+    init:
+      mode: always
   info:
     env:
       enabled: true
