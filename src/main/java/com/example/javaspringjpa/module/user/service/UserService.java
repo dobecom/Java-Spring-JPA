@@ -1,11 +1,12 @@
 package com.example.javaspringjpa.module.user.service;
 
 import com.example.javaspringjpa.entity.User;
-import com.example.javaspringjpa.model.request.user.CreateUserRequest;
+import com.example.javaspringjpa.model.request.user.AddUserRequest;
 import com.example.javaspringjpa.model.response.user.CreateUserResponse;
 import com.example.javaspringjpa.model.response.user.GetUserResponse;
 import com.example.javaspringjpa.module.user.repository.UserQuerydslRepository;
 import com.example.javaspringjpa.module.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,25 +14,30 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final UserQuerydslRepository userQuerydslRepository;
 
-    public UserService(UserRepository userRepository, UserQuerydslRepository userQuerydslRepository) {
-        this.userRepository = userRepository;
-        this.userQuerydslRepository = userQuerydslRepository;
-    }
 
-    public CreateUserResponse create(CreateUserRequest request) {
-        // TODO: encrypt password
-        final User user = userRepository.save(request.toEntity());
+    public CreateUserResponse add(AddUserRequest request) {
+        final User user = userRepository.save(
+                User.builder().email(request.getEmail())
+                        .name(request.getName())
+                        .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                        .build()
+        );
 
         return CreateUserResponse.builder()
                 .userId(user.getId())

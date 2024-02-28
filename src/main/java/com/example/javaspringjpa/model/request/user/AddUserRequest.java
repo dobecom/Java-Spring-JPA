@@ -17,7 +17,7 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequest {
+public class AddUserRequest {
     @Size(max = 50, message = "error.validation.email.not.valid")
     @NotBlank(message = "error.validation.email.not.blank")
     @Schema(description = "Title", example = "test@gmail.com", requiredMode = REQUIRED, type = "string")

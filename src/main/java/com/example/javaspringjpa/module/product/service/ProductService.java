@@ -8,6 +8,7 @@ import com.example.javaspringjpa.model.response.product.GetProductResponse;
 import com.example.javaspringjpa.module.product.repository.ProductQuerydslRepository;
 import com.example.javaspringjpa.module.product.repository.ProductRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,16 +19,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductQuerydslRepository productQuerydslRepository;
-
-    public ProductService(ProductRepository productRepository, ProductQuerydslRepository productQuerydslRepository) {
-        this.productRepository = productRepository;
-        this.productQuerydslRepository = productQuerydslRepository;
-    }
 
     public CreateProductResponse create(CreateProductRequest request) {
         final Product product = productRepository.save(request.toEntity());

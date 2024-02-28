@@ -1,6 +1,6 @@
 package com.example.javaspringjpa.module.user.controller;
 
-import com.example.javaspringjpa.model.request.user.CreateUserRequest;
+import com.example.javaspringjpa.model.request.user.AddUserRequest;
 import com.example.javaspringjpa.model.response.user.CreateUserResponse;
 import com.example.javaspringjpa.model.response.user.GetUserResponse;
 import com.example.javaspringjpa.module.user.service.UserService;
@@ -37,8 +37,8 @@ public class UserController {
             )
     })
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid CreateUserRequest request) {
-        CreateUserResponse response = userService.create(request);
+    public ResponseEntity<?> add(@RequestBody @Valid AddUserRequest request) {
+        CreateUserResponse response = userService.add(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);

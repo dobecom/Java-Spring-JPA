@@ -13,8 +13,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new CorrelationIdInterceptor());
     }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("redirect:/docs/swagger-ui.html");
-    }
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/").setViewName("redirect:/docs/swagger-ui.html");
+//    }
 }

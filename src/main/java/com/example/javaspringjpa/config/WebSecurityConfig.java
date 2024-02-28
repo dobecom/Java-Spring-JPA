@@ -31,7 +31,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/user", "/login", "/signup")
+                        .requestMatchers("/user", "/signup", "/login", "/v3/api-docs/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
@@ -47,11 +47,5 @@ public class WebSecurityConfig {
         builder.userDetailsService(userService)
                 .passwordEncoder(bCryptPasswordEncoder);
         return builder.build();
-    }
-
-    // Password encoder
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
