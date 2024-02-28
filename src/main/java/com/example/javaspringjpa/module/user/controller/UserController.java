@@ -74,7 +74,7 @@ public class UserController {
                 .body(list);
     }
 
-    @Operation(summary = "Get the user")
+    @Operation(summary = "Get the user by email")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success to get the user",
                     content = @Content(mediaType = "application/json",
@@ -93,9 +93,9 @@ public class UserController {
                             ))
             ),
     })
-    @GetMapping("{id}")
-    public ResponseEntity<?> findUser(@PathVariable Long id) {
-        GetUserResponse user = userService.findUserById(id);
+    @GetMapping("{email}")
+    public ResponseEntity<?> getUser(@PathVariable String email) {
+        GetUserResponse user = userService.getUserByEmail(email);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(user);

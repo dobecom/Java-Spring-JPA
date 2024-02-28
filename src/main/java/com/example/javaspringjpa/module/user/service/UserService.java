@@ -6,19 +6,20 @@ import com.example.javaspringjpa.model.response.user.CreateUserResponse;
 import com.example.javaspringjpa.model.response.user.GetUserResponse;
 import com.example.javaspringjpa.module.user.repository.UserQuerydslRepository;
 import com.example.javaspringjpa.module.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserQuerydslRepository userQuerydslRepository;
@@ -49,16 +50,22 @@ public class UserService {
         ).toList();
     }
 
-    public GetUserResponse findUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public GetUserResponse getUserByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
             return GetUserResponse.builder()
                     .email(user.get().getEmail())
                     .name(user.get().getName())
                     .build();
         } else {
-            throw new IllegalArgumentException("User not found" + id);
+            throw new IllegalArgumentException("User not found" + email);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
 //    @Transactional
