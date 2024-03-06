@@ -41,3 +41,6 @@ info:
 #logging:
 #  level:
 #    root: WARN
+jwt:
+  issuer: test@gmail.com
+  secret_key: secret
