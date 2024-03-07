@@ -26,5 +26,6 @@ CREATE TABLE `user` (
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `user_unique_email` (`email`),
   CONSTRAINT `user_chk_1` CHECK ((`status` between 0 and 2))
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

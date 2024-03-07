@@ -1,5 +1,6 @@
 package com.example.javaspringjpa.domain.user.service;
 
+import com.example.javaspringjpa.domain.user.presentation.request.SignInRequest;
 import com.example.javaspringjpa.entity.User;
 import com.example.javaspringjpa.domain.user.presentation.request.AddUserRequest;
 import com.example.javaspringjpa.domain.user.presentation.response.CreateUserResponse;
@@ -33,16 +34,20 @@ public class UserService implements UserDetailsService {
 
 
     public CreateUserResponse add(AddUserRequest request) {
-        final User user = userRepository.save(
-                User.builder().email(request.getEmail())
-                        .name(request.getName())
-                        .password(bCryptPasswordEncoder.encode(request.getPassword()))
-                        .build()
-        );
+        try {
+            final User user = userRepository.save(
+                    User.builder().email(request.getEmail())
+                            .name(request.getName())
+                            .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                            .build()
+            );
 
-        return CreateUserResponse.builder()
-                .userId(user.getId())
-                .build();
+            return CreateUserResponse.builder()
+                    .userId(user.getId())
+                    .build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<GetUserResponse> list(int page, int pageSize) {
@@ -78,6 +83,15 @@ public class UserService implements UserDetailsService {
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
+    }
+
+    public String signIn(SignInRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new NoSuchElementException("User not found"));
+        if (!bCryptPasswordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Password not matched");
+        }
+        return "success";
     }
 
 //    @Transactional

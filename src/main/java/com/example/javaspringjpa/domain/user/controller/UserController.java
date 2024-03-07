@@ -1,6 +1,7 @@
 package com.example.javaspringjpa.domain.user.controller;
 
 import com.example.javaspringjpa.domain.user.presentation.request.AddUserRequest;
+import com.example.javaspringjpa.domain.user.presentation.request.SignInRequest;
 import com.example.javaspringjpa.domain.user.presentation.response.CreateUserResponse;
 import com.example.javaspringjpa.domain.user.presentation.response.GetUserResponse;
 import com.example.javaspringjpa.domain.user.service.UserService;
@@ -99,6 +100,14 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(user);
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> signIn(@RequestBody @Valid SignInRequest request) {
+        String result = userService.signIn(request);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(result);
     }
 
 //    @Operation(summary = "Delete users")
