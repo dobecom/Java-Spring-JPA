@@ -1,6 +1,6 @@
 package com.example.javaspringjpa.config;
 
-import com.example.javaspringjpa.module.user.service.UserService;
+import com.example.javaspringjpa.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

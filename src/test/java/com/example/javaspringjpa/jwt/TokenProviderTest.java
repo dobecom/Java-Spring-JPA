@@ -3,7 +3,7 @@ package com.example.javaspringjpa.jwt;
 import com.example.javaspringjpa.config.jwt.JwtProperties;
 import com.example.javaspringjpa.config.jwt.TokenProvider;
 import com.example.javaspringjpa.entity.User;
-import com.example.javaspringjpa.module.user.repository.UserRepository;
+import com.example.javaspringjpa.domain.user.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
