@@ -60,7 +60,7 @@ public class ProductService {
                     .ownerId(product.get().getOwnerId())
                     .build();
         } else {
-            throw new IllegalArgumentException("Product not found" + id);
+            throw new NoSuchElementException();
         }
     }
 

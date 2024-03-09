@@ -1,6 +1,5 @@
 package com.example.javaspringjpa.domain.product.presentation.response;
 
-import com.example.javaspringjpa.common.presentation.response.Status;
 import com.example.javaspringjpa.domain.product.presentation.response.base.ProductResponse;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,10 +22,4 @@ public class GetProductResponse extends ProductResponse {
         this.price = price;
         this.ownerId = ownerId;
     }
-
-    @Override
-    public Status getStatus() {
-        return super.getStatus();
-    }
-
 }
