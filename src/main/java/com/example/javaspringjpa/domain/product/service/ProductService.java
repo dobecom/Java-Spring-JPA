@@ -27,7 +27,14 @@ public class ProductService {
     private final ProductQuerydslRepository productQuerydslRepository;
 
     public CreateProductResponse create(CreateProductRequest request) {
-        final Product product = productRepository.save(request.toEntity());
+        final Product product = productRepository.save(
+                Product.builder()
+                        .title(request.getTitle())
+                        .description(request.getDescription())
+                        .price(request.getPrice())
+                        .ownerId(request.getOwnerId())
+                        .build()
+        );
 
         return CreateProductResponse.builder()
                 .productId(product.getId())

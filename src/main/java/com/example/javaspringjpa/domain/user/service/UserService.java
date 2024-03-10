@@ -2,7 +2,7 @@ package com.example.javaspringjpa.domain.user.service;
 
 import com.example.javaspringjpa.domain.user.presentation.request.SignInRequest;
 import com.example.javaspringjpa.entity.User;
-import com.example.javaspringjpa.domain.user.presentation.request.AddUserRequest;
+import com.example.javaspringjpa.domain.user.presentation.request.SignUpRequest;
 import com.example.javaspringjpa.domain.user.presentation.response.CreateUserResponse;
 import com.example.javaspringjpa.domain.user.presentation.response.GetUserResponse;
 import com.example.javaspringjpa.domain.user.repository.UserQuerydslRepository;
@@ -33,12 +33,13 @@ public class UserService implements UserDetailsService {
     private final UserQuerydslRepository userQuerydslRepository;
 
 
-    public CreateUserResponse add(AddUserRequest request) {
+    public CreateUserResponse add(SignUpRequest request) {
         try {
             final User user = userRepository.save(
-                    User.builder().email(request.getEmail())
-                            .name(request.getName())
+                    User.builder()
+                            .email(request.getEmail())
                             .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                            .name(request.getName())
                             .build()
             );
 
@@ -91,6 +92,7 @@ public class UserService implements UserDetailsService {
         if (!bCryptPasswordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("Password not matched");
         }
+        // TODO:
         return "success";
     }
 

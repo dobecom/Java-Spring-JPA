@@ -1,14 +1,9 @@
 package com.example.javaspringjpa.domain.product.presentation.request;
 
-import com.example.javaspringjpa.domain.product.presentation.request.base.ProductRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -17,21 +12,19 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 @Schema(description = "Update Product Request")
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UpdateProductRequest implements ProductRequest {
-    @Size(max = 50, message = "error.validation.title.not.valid")
+public class UpdateProductRequest {
     @NotBlank(message = "error.validation.title.not.blank")
+    @Size(max = 50, message = "error.validation.title.not.valid")
     @Schema(description = "Title", example = "product1", requiredMode = REQUIRED, type = "string")
-    private String title;
+    private final String title;
 
-    @Size(max = 200, message = "error.validation.description.not.valid")
     @NotBlank(message = "error.validation.description.not.blank")
+    @Size(max = 200, message = "error.validation.description.not.valid")
     @Schema(description = "Description", example = "description1", requiredMode = REQUIRED, type = "string")
-    private String description;
+    private final String description;
 
-    @Digits(integer = 19, fraction = 2, message = "error.validation.price.not.valid")
-    @NotBlank(message = "error.validation.price.not.blank")
-    @Schema(description = "Price", example = "100", requiredMode = REQUIRED, type = "string")
-    private BigDecimal price;
+    @PositiveOrZero(message = "error.validation.price.must.be.positive")
+    @NotNull(message = "error.validation.price.not.blank")
+    @Schema(description = "Price", example = "100", requiredMode = REQUIRED, type = "number")
+    private final BigDecimal price;
 }

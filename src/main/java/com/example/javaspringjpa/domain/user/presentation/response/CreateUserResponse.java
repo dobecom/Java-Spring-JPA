@@ -1,13 +1,10 @@
 package com.example.javaspringjpa.domain.user.presentation.response;
 
-import com.example.javaspringjpa.domain.user.presentation.response.base.UserResponse;
 import lombok.Builder;
+import lombok.Getter;
 
-public class CreateUserResponse extends UserResponse {
-    private Long userId;
-
-    @Builder
-    public CreateUserResponse(Long userId) {
-        this.userId = userId;
-    }
+@Getter
+@Builder
+public class CreateUserResponse {
+    private final Long userId;
 }

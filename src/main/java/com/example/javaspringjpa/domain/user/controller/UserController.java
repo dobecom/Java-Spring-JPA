@@ -1,6 +1,6 @@
 package com.example.javaspringjpa.domain.user.controller;
 
-import com.example.javaspringjpa.domain.user.presentation.request.AddUserRequest;
+import com.example.javaspringjpa.domain.user.presentation.request.SignUpRequest;
 import com.example.javaspringjpa.domain.user.presentation.request.SignInRequest;
 import com.example.javaspringjpa.domain.user.presentation.response.CreateUserResponse;
 import com.example.javaspringjpa.domain.user.presentation.response.GetUserResponse;
@@ -13,11 +13,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "user", description = "user api")
@@ -38,7 +38,7 @@ public class UserController {
             )
     })
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody @Valid AddUserRequest request) {
+    public ResponseEntity<?> add(@RequestBody @Valid SignUpRequest request) {
         CreateUserResponse response = userService.add(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)

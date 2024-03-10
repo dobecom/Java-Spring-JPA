@@ -1,13 +1,10 @@
 package com.example.javaspringjpa.domain.product.presentation.response;
 
-import com.example.javaspringjpa.domain.product.presentation.response.base.ProductResponse;
 import lombok.Builder;
+import lombok.Getter;
 
-public class CreateProductResponse extends ProductResponse {
-    private Long productId;
-
-    @Builder
-    public CreateProductResponse(Long productId) {
-        this.productId = productId;
-    }
+@Getter
+@Builder
+public class CreateProductResponse {
+    private final Long productId;
 }
