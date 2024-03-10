@@ -1,4 +1,4 @@
-## Description
+## Java Spring JPA Project
 This project demonstrates the use of Spring Boot 3.2 for building a simple Java application with JPA and other essential features.
 
 ## Version
@@ -8,6 +8,10 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 - Gradle
 
 ## Project Contents
+### Basic of REST API
+- Exposes endpoints for CRUD operations on entities (ex: User, Product)
+- Uses Spring Data JPA & Querydsl JPA for data access and request handling
+
 ### Configurations
 1. Interceptors & Exception Filters
    - Logging and exception handling
@@ -25,10 +29,10 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
    - Role-based authorization
 
 ### Request Validation
-- Parameter validation using jakarta.validation annotations.
+- Parameter validation using jakarta.validation annotations
 
 ### Test Code
-- Unit and integration tests using JUnit 5.
+- Unit and integration tests using JUnit 5
 
 ### Branches
 - main : Practice for Spring Security, JPA
