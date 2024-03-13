@@ -1,7 +1,12 @@
 package com.example.javaspringjpa.domain.product.exception;
 
-public class ProductCreateLimitException extends RuntimeException {
-    public ProductCreateLimitException() {
-        super("Not allowed to create more than 5 products. ");
+import com.example.javaspringjpa.domain.product.exception.base.ProductExceptionBase;
+import com.example.javaspringjpa.exception.ExceptionEnums;
+import lombok.Getter;
+
+@Getter
+public class ProductCreateLimitException extends ProductExceptionBase {
+    public ProductCreateLimitException(ExceptionEnums exceptionEnums) {
+        super(exceptionEnums);
     }
 }

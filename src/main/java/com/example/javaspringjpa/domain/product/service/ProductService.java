@@ -1,5 +1,6 @@
 package com.example.javaspringjpa.domain.product.service;
 
+import com.example.javaspringjpa.domain.product.exception.ProductCreateLimitException;
 import com.example.javaspringjpa.entity.Product;
 import com.example.javaspringjpa.domain.product.presentation.request.CreateProductRequest;
 import com.example.javaspringjpa.domain.product.presentation.request.UpdateProductRequest;
@@ -7,6 +8,7 @@ import com.example.javaspringjpa.domain.product.presentation.response.CreateProd
 import com.example.javaspringjpa.domain.product.presentation.response.GetProductResponse;
 import com.example.javaspringjpa.domain.product.repository.ProductQuerydslRepository;
 import com.example.javaspringjpa.domain.product.repository.ProductRepository;
+import com.example.javaspringjpa.exception.ExceptionEnums;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,6 +29,11 @@ public class ProductService {
     private final ProductQuerydslRepository productQuerydslRepository;
 
     public CreateProductResponse create(CreateProductRequest request) {
+        // TODO:
+        Long productsCount = productRepository.countByOwnerId(1L);
+        if (productsCount >= 5) {
+            throw new ProductCreateLimitException(ExceptionEnums.PRODUCT_CREATE_LIMIT);
+        }
         final Product product = productRepository.save(
                 Product.builder()
                         .title(request.getTitle())

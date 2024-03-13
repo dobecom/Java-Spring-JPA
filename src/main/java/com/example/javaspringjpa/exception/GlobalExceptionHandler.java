@@ -1,5 +1,6 @@
 package com.example.javaspringjpa.exception;
 
+import com.example.javaspringjpa.domain.product.exception.base.ProductExceptionBase;
 import com.example.javaspringjpa.exception.base.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -14,9 +15,23 @@ import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ProductExceptionBase.class)
+    public ResponseEntity<ErrorResponse> handleProductExceptionBase(ProductExceptionBase e, HttpServletRequest request) {
+        ExceptionEnums exceptionEnums = e.getExceptionEnums();
+        return ResponseEntity
+                .status(exceptionEnums.getHttpStatus())
+                .body(ErrorResponse.create(
+                        exceptionEnums.getCode(),
+                        exceptionEnums.getMessage(),
+                        exceptionEnums.getHttpStatus(),
+                        request.getRequestURI())
+                );
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException e, HttpServletRequest request) {
-        return ResponseEntity.status(NOT_FOUND).body(ErrorResponse.create("NF001", "No such element.", "404", request.getRequestURI()));
+        return ResponseEntity.status(NOT_FOUND).body(ErrorResponse.create("NF001", "No such element.", 404, request.getRequestURI()));
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
@@ -43,23 +58,23 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<ErrorResponse> handleDuplicateKeyException(String uri) {
-        return ResponseEntity.status(CONFLICT).body(ErrorResponse.create("CF001", "Conflict occurred due to duplicate key constraint violation.", "409", uri));
+        return ResponseEntity.status(CONFLICT).body(ErrorResponse.create("CF001", "Conflict occurred due to duplicate key constraint violation.", 409, uri));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
-        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR001", "Bad Request due to method argument not valid.", "400", request.getRequestURI()));
+        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR001", "Bad Request due to method argument not valid.", 400, request.getRequestURI()));
     }
 
     private ResponseEntity<ErrorResponse> handleNotNullConstraintViolationException(String uri) {
-        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR002", "Bad Request due to not null constraint violation.", "400", uri));
+        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR002", "Bad Request due to not null constraint violation.", 400, uri));
     }
 
     private ResponseEntity<ErrorResponse> handleForeignKeyConstraintViolationException(String uri) {
-        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR003", "Bad Request due to foreign key constraint violation.", "400", uri));
+        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR003", "Bad Request due to foreign key constraint violation.", 400, uri));
     }
 
     private ResponseEntity<ErrorResponse> handleUnknownDataIntegrityViolationException(String uri) {
-        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR004", "Bad Request due to unknown data integrity violation.", "400", uri));
+        return ResponseEntity.status(BAD_REQUEST).body(ErrorResponse.create("BR004", "Bad Request due to unknown data integrity violation.", 400, uri));
     }
 }

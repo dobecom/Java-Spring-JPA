@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.math.BigDecimal;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -43,8 +45,8 @@ public class ProductControllerTest {
         CreateProductRequest request = CreateProductRequest.builder()
                 .title("title")
                 .description("description")
-                .price("1000")
-                .ownerId("1")
+                .price(BigDecimal.valueOf(1000))
+                .ownerId(1L)
                 .build();
 
         // when & then
