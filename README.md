@@ -12,6 +12,19 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 - Exposes endpoints for CRUD operations on entities (ex: User, Product)
 - Uses Spring Data JPA & Querydsl JPA for data access and request handling
 
+### Getting Started
+- Instructions for downloading and running the project in a local environment.
+#### Installation
+1. Clone this repository.    
+`git clone https://github.com/dobecom/Java-Spring-JPA.git`
+2. Reload All Gradle Project
+3. Create Docker Containers for MySQL DB and Redis
+`cd docker/`
+`docker compose up -d`
+4. Run Java Application
+   - Ref. Creating DB table and data automatically is optional in application.yml by modifying spring.jpa.hibernate.ddl-auto and spring.sql.init.mode
+5. Access to health check URL - http://localhost:8080/actuator/health
+
 ### Configurations
 1. Interceptors & Exception Filters
    - Logging and exception handling
