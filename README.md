@@ -19,8 +19,8 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 `git clone https://github.com/dobecom/Java-Spring-JPA.git`
 2. Reload All Gradle Project
 3. Create Docker Containers for MySQL DB and Redis
-`cd docker/`
-`docker compose up -d`
+   `cd docker/`
+   `docker compose up -d`
 4. Run Java Application
    - Ref. Creating DB table and data automatically is optional in application.yml by modifying spring.jpa.hibernate.ddl-auto and spring.sql.init.mode
 5. Access to health check URL - http://localhost:8080/actuator/health
