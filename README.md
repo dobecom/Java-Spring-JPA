@@ -13,8 +13,8 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 - Uses Spring Data JPA & Querydsl JPA for data access and request handling
 
 ### Getting Started
-- Instructions for downloading and running the project in a local environment.
 #### Installation
+- Instructions for downloading and running the project in a local environment.
 1. Clone this repository.    
 `git clone https://github.com/dobecom/Java-Spring-JPA.git`
 2. Open the project and Reload All Gradle Project
