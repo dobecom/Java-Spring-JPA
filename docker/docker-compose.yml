@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-    mysql_db:
+    do_mysql:
         image: mysql:8.0.36
         container_name: do-mysql
         restart: always
@@ -15,7 +15,7 @@ services:
         volumes:
           - ../db/mysql/migrations:/docker-entrypoint-initdb.d
 
-    redis_db:
+    do_redis:
         image: redis:7.2.4
         container_name: do-redis
         restart: always
