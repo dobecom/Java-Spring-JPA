@@ -1,3 +1,5 @@
 rootProject.name = 'java-spring-jpa'
 include 'rental'
+include 'book'
+include 'book'
 
