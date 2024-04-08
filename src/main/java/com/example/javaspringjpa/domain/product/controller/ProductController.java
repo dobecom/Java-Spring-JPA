@@ -7,6 +7,7 @@ import com.example.javaspringjpa.domain.product.presentation.response.CreateProd
 import com.example.javaspringjpa.domain.product.presentation.response.GetProductResponse;
 import com.example.javaspringjpa.domain.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -94,7 +95,10 @@ public class ProductController {
             ),
     })
     @GetMapping("{id}")
-    public ResponseEntity<?> findProduct(@PathVariable Long id) {
+    public ResponseEntity<?> findProduct(
+            @Parameter(description = "product id", example = "1")
+            @PathVariable(name = "id", required = true) Long id
+    ) {
         GetProductResponse product = productService.findProductById(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -130,7 +134,11 @@ public class ProductController {
             ),
     })
     @PatchMapping("{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid UpdateProductRequest request) {
+    public ResponseEntity<?> updateProduct(
+            @Parameter(description = "product id", example = "1")
+            @PathVariable(name = "id", required = true) Long id,
+            @RequestBody @Valid UpdateProductRequest request
+    ) {
         productService.updateProduct(id, request);
         return ResponseEntity
                 .status(HttpStatus.OK)

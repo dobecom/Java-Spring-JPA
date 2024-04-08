@@ -3,6 +3,7 @@ package com.example.rental.framework.web;
 import com.example.rental.application.usecase.*;
 import com.example.rental.framework.web.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,20 +33,29 @@ public class RentalController {
 
     @Operation(summary = "도서카드 조회",description = "사용자정보(id) -> 도서카드정보")
     @GetMapping("/RentalCard/{userId}")
-    public ResponseEntity<RentalCardOutputDTO> getRentalCard(@PathVariable String userId){
+    public ResponseEntity<RentalCardOutputDTO> getRentalCard(
+            @Parameter(description = "user id", example = "1")
+            @PathVariable(name = "userId", required = true) String userId
+    ){
         Optional<RentalCardOutputDTO> rentalCard = inquiryUsecase.getRentalCard(new UserInputDTO(userId, ""));
         return ResponseEntity.ok(rentalCard.get());
     }
     @Operation(summary = "대여도서목록 조회",description = "사용자정보(id) -> 대여도서목록 조회")
     @GetMapping("/RentalCard/{userId}/rentbook")
-    public ResponseEntity<List<RentItemOutputDTO>> getAllRentItem(@PathVariable String userId){
+    public ResponseEntity<List<RentItemOutputDTO>> getAllRentItem(
+            @Parameter(description = "user id", example = "1")
+            @PathVariable(name = "userId", required = true) String userId
+    ){
         Optional<List<RentItemOutputDTO>> allRentItem = inquiryUsecase.getAllRentItem(new UserInputDTO(userId, ""));
         return ResponseEntity.ok(allRentItem.get());
     }
 
     @Operation(summary = "반납도서목록 조회",description = "사용자정보(id) -> 반납도서목록 조회")
     @GetMapping("/RentalCard/{userId}/returnbook")
-    public ResponseEntity<List<ReturnItemOutputDTO>> getAllReturnItem(@PathVariable String userId){
+    public ResponseEntity<List<ReturnItemOutputDTO>> getAllReturnItem(
+            @Parameter(description = "user id", example = "1")
+            @PathVariable(name = "userId", required = true) String userId
+    ){
         Optional<List<ReturnItemOutputDTO>> allReturnItem = inquiryUsecase.getAllReturnItem(new UserInputDTO(userId, ""));
         return ResponseEntity.ok(allReturnItem.get());
     }

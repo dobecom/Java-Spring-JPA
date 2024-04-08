@@ -6,6 +6,7 @@ import com.example.javaspringjpa.domain.user.presentation.response.CreateUserRes
 import com.example.javaspringjpa.domain.user.presentation.response.GetUserResponse;
 import com.example.javaspringjpa.domain.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -95,7 +96,10 @@ public class UserController {
             ),
     })
     @GetMapping("{email}")
-    public ResponseEntity<?> getUser(@PathVariable String email) {
+    public ResponseEntity<?> getUser(
+            @Parameter(description = "user email", example = "test@gmail.com")
+            @PathVariable(name = "email", required = true) String email
+    ) {
         GetUserResponse user = userService.getUserByEmail(email);
         return ResponseEntity
                 .status(HttpStatus.OK)
