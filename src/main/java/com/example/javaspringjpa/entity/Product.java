@@ -3,14 +3,18 @@ package com.example.javaspringjpa.entity;
 import com.example.javaspringjpa.entity.base.BaseEntity;
 import com.example.javaspringjpa.entity.type.ProductStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product extends BaseEntity {
 
     @Column(nullable = false)
