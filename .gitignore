@@ -39,3 +39,5 @@ out/
 
 ### Docker Data ###
 /docker/containers/data/
+/db/mongo/
+/db/mysql/
