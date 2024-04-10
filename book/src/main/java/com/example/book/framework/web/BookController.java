@@ -25,7 +25,7 @@ public class BookController {
 
     @GetMapping("/book/{no}")
     public ResponseEntity<BookOutPutDTO> getBookInfo(
-            @Parameter(description = "user id", example = "1")
+            @Parameter(description = "book id", example = "1")
             @PathVariable(name = "no", required = true) String no
     ) {
         BookOutPutDTO bookInfo = inquiryUsecase.getBookInfo(Long.parseLong(no));
