@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-    do_mysql:
+    do-mysql:
         image: mysql:8.0.36
         container_name: do-mysql
         restart: always
@@ -15,7 +15,7 @@ services:
         volumes:
           - ../db/mysql/migrations:/docker-entrypoint-initdb.d
 
-    do_redis:
+    do-redis:
         image: redis:7.2.4
         container_name: do-redis
         restart: always
@@ -26,6 +26,20 @@ services:
             limits:
               cpus: "1"
               memory: 1024M
+
+    do-mongodb:
+        image: mongo:7.0.8
+        container_name: do-mongodb
+        restart: always
+        ports:
+          - "27017:27017"
+        volumes:
+          - ../db/mongo/data:/data/db
+          - ../db/mongo/init:/docker-entrypoint-initdb.d
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=user
+          - MONGO_INITDB_ROOT_PASSWORD=password
+          - MONGO_INITDB_DATABASE=db
 
     zookeeper-1:
       image: confluentinc/cp-zookeeper:latest
