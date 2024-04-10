@@ -36,3 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Docker Data ###
+/docker/containers/data/
