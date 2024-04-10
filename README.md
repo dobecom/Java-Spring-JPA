@@ -10,7 +10,8 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 
 ## Project Contents
 ### Basic of REST API
-- Standalone REST API Directory Path - Java-Spring-JPA/src/main/java
+- Standalone REST API Directory Path
+   : Java-Spring-JPA/src/main/java
 - Exposes endpoints for CRUD operations on entities (ex: User, Product)
 - Uses Spring Data JPA & Querydsl JPA for data access and request handling
 
