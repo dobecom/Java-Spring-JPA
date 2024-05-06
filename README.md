@@ -54,9 +54,13 @@ This project demonstrates the use of Spring Boot 3.2 for building a simple Java 
 - Gateway - In Preparation
 - Message Broker - Kafka
 - Microservice 1 - Rental
+  - Readme : https://github.com/dobecom/Java-Spring-JPA/tree/main/rental
 - Microservice 2 - Book
+  - Readme : https://github.com/dobecom/Java-Spring-JPA/tree/main/book
 - Microservice 3 - Member
+  - Readme : https://github.com/dobecom/Java-Spring-JPA/tree/main/member
 - Microservice 4 - Best Book (read-only, MongoDB)
+  - Readme : https://github.com/dobecom/Java-Spring-JPA/tree/main/bestbook
 
 ### Branches
 - main : Practice for Java Spring Security, JPA
