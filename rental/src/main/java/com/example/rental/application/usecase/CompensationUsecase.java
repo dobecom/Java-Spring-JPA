@@ -7,9 +7,9 @@ import com.example.rental.domain.vo.Item;
 
 public interface CompensationUsecase {
 
-    public RentalCard cancleRentItem(IDName idName, Item item);
-    public RentalCard cancleReturnItem(IDName idName,Item item, long point) throws Exception;
-    public long cancleMakeAvailableRental(IDName idName, long point);
+    public RentalCard cancelRentItem(IDName idName, Item item);
+    public RentalCard cancelReturnItem(IDName idName,Item item, long point) throws Exception;
+    public long cancelMakeAvailableRental(IDName idName, long point);
 
 
 }

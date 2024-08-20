@@ -22,7 +22,7 @@ public class CompensationInputPort implements CompensationUsecase {
     private final EventOutputPort eventOutputPort;
 
     @Override
-    public RentalCard cancleRentItem(IDName idName, Item item) {
+    public RentalCard cancelRentItem(IDName idName, Item item) {
 
         return rentalCardOutputPort.loadRentalCard(idName.getId())
                 .map(rentalCard -> {
@@ -38,7 +38,7 @@ public class CompensationInputPort implements CompensationUsecase {
     }
 
     @Override
-    public RentalCard cancleReturnItem(IDName idName, Item item, long point) {
+    public RentalCard cancelReturnItem(IDName idName, Item item, long point) {
         return rentalCardOutputPort.loadRentalCard(idName.getId())
                 .map(rentalCard -> {
                     try {
@@ -52,7 +52,7 @@ public class CompensationInputPort implements CompensationUsecase {
                 .orElseThrow(() -> new NoSuchElementException("Rental card not found for ID: " + idName.getId()));
     }
     @Override
-    public long cancleMakeAvailableRental(IDName idName, long point) {
+    public long cancelMakeAvailableRental(IDName idName, long point) {
         return rentalCardOutputPort.loadRentalCard(idName.getId())
                 .map(rentalCard -> {
                     try {

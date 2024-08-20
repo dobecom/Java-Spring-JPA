@@ -34,15 +34,15 @@ public class RentalEventConsumers {
                 System.out.println("eventType =" + eventType.toString());
                 switch (eventType) {
                     case RENT:
-                        compensationUsecase.cancleRentItem(idName, item);
+                        compensationUsecase.cancelRentItem(idName, item);
                         System.out.println("대여취소 보상트랜젝션 실행");
                         break;
                     case RETURN:
-                        compensationUsecase.cancleReturnItem(idName, item, point);
+                        compensationUsecase.cancelReturnItem(idName, item, point);
                         System.out.println("반납취소 보상트랜젝션 실행");
                         break;
                     case OVERDUE:
-                        compensationUsecase.cancleMakeAvailableRental(idName, point);
+                        compensationUsecase.cancelMakeAvailableRental(idName, point);
                         System.out.println("연체해제처리취소 보상트랜젝션 실행");
                         break;
                     default:
