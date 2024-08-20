@@ -36,3 +36,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Docker Data ###
+/docker/containers/data/
+/db/mongo/
+/db/mysql/
